@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Reparação de Joysticks</title>
+  <style>
+    body { font-family: Arial; background: #e8ffe8; padding: 20px; }
+    form { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+    input, textarea, button { width: 100%; padding: 10px; margin: 5px 0; }
+    button { background: green; color: white; border: none; cursor: pointer; font-weight: bold; }
+    button:hover { background: darkgreen; }
+    h1 { text-align: center; color: #006600; }
+  </style>
+</head>
+<body>
+  <h1>Pedido de Reparação de Joystick ou uma consola</h1>
+  
+  <form id="form">
+    <input type="text" id="nome" placeholder="Seu Nome" required>
+    <input type="text" id="modelo" placeholder="Modelo do Joystick" required>
+    <textarea id="problema" placeholder="Descreva o problema" required></textarea>
+    <button type="submit">Enviar Pedido</button>
+  </form>
+
+  <script>
+    // 👉 COLE AQUI A URL DO SEU Google Apps Script (para salvar na planilha)
+    const sheetURL = "https://script.google.com/macros/s/AKfycbyN5GbVF4xpYTNSKV9mtVjWCDT_c4K4kbIlBCBhDEDwG8CqwpXOJXzudRbNxoCVmVS0/exec"; 
+    
+    // 👉 COLOQUE AQUI O SEU NÚMERO WHATSAPP COM CÓDIGO (+258 para Moçambique)
+    const numeroWhatsApp = "258843709289"; 
+
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const nome = document.getElementById("nome").value;
+      const modelo = document.getElementById("modelo").value;
+      const problema = document.getElementById("problema").value;
+
+      // Salvar na planilha Google Sheets
+      fetch(sheetURL, {
+        method: "POST",
+        body: JSON.stringify({ nome, modelo, problema })
+      });
+
+      // Enviar para WhatsApp
+      const mensagem = `Olá, meu nome é ${nome}. Quero reparar um joystick modelo ${modelo}. O problema é: ${problema}`;
+      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
