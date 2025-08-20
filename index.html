@@ -2,77 +2,149 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ESSA LINHA DEIXA RESPONSIVO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reparação de Joysticks</title>
+  <!-- Biblioteca de Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     body { 
       font-family: Arial, sans-serif; 
       background: #e8ffe8; 
       margin: 0; 
-      padding: 15px; 
+      padding: 10px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h1 { 
-      text-align: center; 
-      color: #006600; 
-      font-size: 1.5em;
-    }
-
-    form { 
+    .container {
       background: white; 
       padding: 20px; 
       border-radius: 10px; 
-      max-width: 100%; 
+      width: 100%;
+      max-width: 420px; 
       box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+      margin-bottom: 20px;
     }
 
-    input, textarea, button { 
-      width: 100%; 
-      padding: 12px; 
-      margin: 8px 0; 
-      font-size: 1em; 
-      border: 1px solid #ccc; 
-      border-radius: 6px; 
-      box-sizing: border-box;
+    h1, h2 { 
+      text-align: center; 
+      color: #006600; 
+      margin-bottom: 15px;
+    }
+
+    form div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px;
+      background: #fafafa;
+    }
+
+    form div i {
+      margin-right: 10px;
+      color: #006600;
+      font-size: 1.2em;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    input, textarea {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1em;
+      width: 100%;
     }
 
     textarea { 
-      min-height: 100px; 
+      min-height: 80px; 
       resize: vertical; 
     }
 
     button { 
+      width: 100%; 
+      padding: 12px; 
       background: green; 
       color: white; 
       border: none; 
-      cursor: pointer; 
+      border-radius: 6px; 
       font-size: 1.1em; 
       font-weight: bold;
+      cursor: pointer; 
+      transition: 0.2s;
+      margin-top: 8px;
     }
 
     button:hover { background: darkgreen; }
 
-    /* Responsividade */
-    @media (max-width: 600px) {
-      body { padding: 10px; }
-      form { padding: 15px; }
-      h1 { font-size: 1.3em; }
+    /* Seção de contactos */
+    .contactos {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .contactos p {
+      margin: 8px 0;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+    }
+
+    .contactos i {
+      margin-right: 8px;
+      color: #006600;
+      font-size: 1.2em;
+      min-width: 20px;
+    }
+
+    @media (max-width: 400px) {
+      h1, h2 { font-size: 1.1em; }
+      button { font-size: 1em; padding: 10px; }
     }
   </style>
 </head>
 <body>
-  <h1>Pedido de Reparação de Joysticks</h1>
-  
-  <form id="form">
-    <input type="text" id="nome" placeholder="Seu Nome" required>
-    <input type="text" id="modelo" placeholder="Modelo do Joystick" required>
-    <textarea id="problema" placeholder="Descreva o problema" required></textarea>
-    <button type="submit">Enviar Pedido</button>
-  </form>
+  <!-- Formulário -->
+  <div class="container">
+    <h1><i class="fa-solid fa-gamepad"></i> Reparação de Joysticks</h1>
+    
+    <form id="form">
+      <div>
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="nome" placeholder="Seu Nome" required>
+      </div>
+      <div>
+        <i class="fa-solid fa-joystick"></i>
+        <input type="text" id="modelo" placeholder="Modelo do Joystick" required>
+      </div>
+      <div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <textarea id="problema" placeholder="Descreva o problema" required></textarea>
+      </div>
+      <button type="submit"><i class="fa-brands fa-whatsapp"></i> Enviar Pedido</button>
+    </form>
+  </div>
+
+  <!-- Contactos -->
+  <div class="contactos">
+    <h2><i class="fa-solid fa-address-book"></i> Contactos</h2>
+    <p><i class="fa-solid fa-phone"></i> +258 876709289</p>
+    <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: +258 843709289</p>
+    <p><i class="fa-solid fa-envelope"></i> email: yaniktembe8@gmail.com</p>
+    <p><i class="fa-solid fa-location-dot"></i> Maputo, Moçambique</p>
+  </div>
 
   <script>
     // 👉 URL do Google Apps Script (planilha)
-    const sheetURL = "https://script.google.com/macros/s/AKfycbyN5GbVF4xpYTNSKV9mtVjWCDT_c4K4kbIlBCBhDEDwG8CqwpXOJXzudRbNxoCVmVS0/exec "; 
+    const sheetURL = "https://script.google.com/macros/s/AKfycbyN5GbVF4xpYTNSKV9mtVjWCDT_c4K4kbIlBCBhDEDwG8CqwpXOJXzudRbNxoCVmVS0/exec"; 
     
     // 👉 Seu número WhatsApp (+258 para Moçambique)
     const numeroWhatsApp = "258843709289"; 
@@ -92,7 +164,7 @@
 
       // Enviar para WhatsApp
       const mensagem = `Olá, meu nome é ${nome}. Quero reparar um joystick modelo ${modelo}. O problema é: ${problema}`;
-      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+      const url = `https://wa.me/${+258843709289}?text=${encodeURIComponent(mensagem)}`;
       window.open(url, "_blank");
     });
   </script>
